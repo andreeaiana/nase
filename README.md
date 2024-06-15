@@ -62,7 +62,9 @@ The final NaSE model was trained by sequentially combining the two objectives:
     NASE_DAE_SAVE_PATH = ${nase_dae_save_path}
 
     from nase.models.nase import NASE
+
     nase_model = NASE.load_from_checkpoint(NASE_DAE_CKPT_PATH)
+
     encoder = nase_model.loss_fct.encoder
     tokenizer = nase_model.loss_fct.encoder.tokenizer
 
@@ -83,7 +85,9 @@ The final NaSE model was trained by sequentially combining the two objectives:
     NASE_FINAL_SAVE_PATH = ${nase_final_save_path}
 
     from nase.models.nase import NASE
+
     nase_model = NASE.load_from_checkpoint(NASE_FINAL_CKPT_PATH)
+    
     encoder = nase_model.loss_fct.encoder
     tokenizer = nase_model.loss_fct.encoder.tokenizer
 
