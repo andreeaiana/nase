@@ -1,0 +1,29 @@
+# @package _global_
+
+# to execute this experiment run:
+# python nase/train.py experiment=train_nase
+
+defaults:
+  - override /data: datamodule.yaml
+  - override /model: nase.yaml
+  - override /callbacks: default.yaml
+  - override /logger: wandb.yaml
+  - override /trainer: gpu.yaml
+
+tags: ["pretrain", "nase", "dae"]
+
+trainer:
+  max_steps: 500000
+  val_check_interval: 5000 
+
+callbacks:
+  model_checkpoint:
+    every_n_train_steps: ${trainer.val_check_interval}
+
+seed: 42
+
+logger:
+  wandb:
+    name: "nase_dae_ms=${trainer.max_steps}_val=${trainer.val_check_interval}_bs=${data.train_batch_size}_lr=${model.optimizer.lr}_seed=${seed}"
+    tags: ${tags}
+    group: "pretrain"

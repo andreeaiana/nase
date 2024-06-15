@@ -1,0 +1,66 @@
+_target_: nase.data.datamodule.DataModule
+_recursive_: False
+
+# training data
+polynews_dataset_name: "aiana94/polynews"
+parallel_data: False
+combined_objectives: False
+train_batch_size: 8
+training_languages: null
+min_examples: 100
+
+tokenizer: 
+  _target_: transformers.AutoTokenizer.from_pretrained
+  _recursive_: False
+  pretrained_model_name_or_path: "sentence-transformers/LaBSE"
+  use_fast: True
+
+# validation data
+rec_tokenizer: 
+  _target_: transformers.AutoTokenizer.from_pretrained
+  _recursive_: False
+  pretrained_model_name_or_path: ${data.tokenizer.pretrained_model_name_or_path} 
+  use_fast: True
+  model_max_length: 96
+
+xmind_dataset_size: small 
+
+tgt_languages:
+  - eng
+  - cmn
+  - fin
+  - grn
+  - hat
+  - ind
+  - jpn
+  - kat
+  - ron
+  - som
+  - swh
+  - tam
+  - tha
+  - tur
+  - vie
+
+mind_dataset_url:
+  large:
+    train: "https://mind201910small.blob.core.windows.net/release/MINDlarge_train.zip"
+    dev: "https://mind201910small.blob.core.windows.net/release/MINDlarge_dev.zip"
+  small:
+    train: "https://mind201910small.blob.core.windows.net/release/MINDsmall_train.zip"
+    dev: "https://mind201910small.blob.core.windows.net/release/MINDsmall_dev.zip"
+
+xmind_dataset_url: 'https://github.com/andreeaiana/xMIND/raw/main/xMIND/'
+
+data_dir: ${paths.data_dir}
+dataset_attributes:
+  - "title"
+  - "abstract"
+
+valid_time_split: "2019-11-14 00:00:00" # interactions with timestamp before this data will be used for training
+val_batch_size: 32
+max_history_len: 50
+concatenate_inputs: True
+
+num_workers: 1
+pin_memory: True

@@ -1,0 +1,190 @@
+# @package _global_
+
+# specify here default configuration
+# order of defaults determines the order in which configs override each other
+defaults:
+  - _self_
+  - paths: default
+  - logger: wandb
+  - hydra: polynews
+
+task_name: "construct_polynews"
+
+# map of language code to ISO 693-3 Code
+lang_id2iso_code:
+    'en': 'eng_Latn'
+    'eng': 'eng_Latn'
+    'fr': 'fra_Latn'
+    'fra': 'fra_Latn'
+    'de': 'deu_Latn'
+    'es': 'spa_Latn'
+    'it': 'ita_Latn'
+    'el': 'ell_Grek'
+    'pt': 'por_Latn'
+    'pl': 'pol_Latn'
+    'nl': 'nld_Latn'
+    'sr_latn': 'srp_Latn'
+    'sr_cyrl': 'srp_Cyrl'
+    'cs': 'ces_Latn'
+    'ca': 'cat_Latn'
+    'hu': 'hun_Latn'
+    'tr': 'tur_Latn'
+    'sq': 'sqi_Latn'
+    'bg': 'bul_Cyrl'
+    'fi': 'fin_Latn'
+    'ro': 'ron_Latn'
+    'uk': 'ukr_Cyrl'
+    'bs': 'bos_Latn'
+    'no': 'nor_Latn'
+    'ru': 'rus_Cyrl'
+    'zh': 'zho_Hans'
+    'ko': 'kor_Hang' 
+    'ja': 'jpn_Jpan'
+    'ta': 'tam_Taml'
+    'th': 'tha_Thai'
+    'guw': 'guw_Latn'
+    'fa': 'pes_Arab'
+    'he': 'heb_Hebr'
+    'amh': 'amh_Ethi'
+    'hau': 'hau_Latn' 
+    'ibo': 'ibo_Latn'
+    'lin': 'lin_Latn' 
+    'lug': 'lug_Latn'
+    'orm': 'orm_Latn'
+    'pcm': 'pcm_Latn'
+    'run': 'run_Latn' 
+    'sna': 'sna_Latn'
+    'som': 'som_Latn'
+    'swa': 'swh_Latn'
+    'tir': 'tir_Ethi'
+    'xho': 'xho_Latn'
+    'yor': 'yor_Latn' 
+    'yo': 'yor_Latn' 
+    'luo': 'luo_Latn'
+    'tsn': 'tsn_Latn'
+    'twi': 'twi_Latn'
+    'zul': 'zul_Latn'
+    'bam': 'bam_Latn'
+    'bbj': 'bbj_Latn'
+    'ewe': 'ewe_Latn'
+    'fon': 'fon_Latn'
+    'mos': 'mos_Latn'
+    'wol': 'wol_Latn'
+    'hi': 'hin_Deva'
+    'et': 'est_Latn'
+    'gu': 'guj_Gujr'
+    'kk': 'kaz_Cyrl'
+    'lt': 'lit_Latn'
+    'lv': 'lav_Latn'
+    'am': 'amh_Ethi'
+    'ar': 'arb_Arab'
+    'aym': 'ayr_Latn'
+    'bn': 'ben_Beng'
+    'da': 'dan_Latn'
+    'fil': 'fil_Latn'    
+    'id': 'ind_Latn'
+    'jp': 'jpn_Jpan'
+    'km': 'khm_Khmr'
+    'mg': 'plt_Latn'
+    'mk': 'mkd_Cyrl'
+    'my': 'mya_Mymr'
+    'or': 'ory_Orya'
+    'sv': 'swe_Latn'
+    'sw': 'swh_Latn'
+    'zhs': 'zho_Hans'
+    'ur': 'urd_Arab'
+    'zht': 'zho_Hant'
+    'ku': 'ckb_Arab'
+    'ne': 'npi_Deva'
+    'pa': 'pan_Guru'
+    'tet': 'tet_Latn'
+
+# codes of languages in Wikinews
+wikinews_languages:
+  - 'en'
+  - 'fr'
+  - 'de'
+  - 'es'
+  - 'it'
+  - 'el'
+  - 'pt'
+  - 'pl'
+  - 'nl'
+  - 'sr'
+  - 'cs'
+  - 'ca'
+  - 'hu'
+  - 'sv'
+  - 'tr'
+  - 'sq'
+  - 'bg'
+  - 'fi'
+  - 'ro'
+  - 'uk'
+  - 'bs'
+  - 'no'
+  - 'ru'
+  - 'zh'
+  - 'ko' 
+  - 'ja'
+  - 'ta'
+  - 'th'
+  - 'guw'
+  - 'fa'
+  - 'ar'
+  - 'he'   
+ 
+# codes of languages in MasakhaNews
+masakhanews_languages:
+  - 'amh'
+  - 'eng'
+  - 'fra' 
+  - 'hau' 
+  - 'ibo'
+  - 'lin' 
+  - 'lug'
+  - 'orm'
+  - 'pcm'
+  - 'run' 
+  - 'sna'
+  - 'som'
+  - 'swa'
+  - 'tir'
+  - 'xho'
+  - 'yor'  
+
+# codes of languages in MAFAND
+mafand_language_pairs:
+  - 'en-hau'
+  - 'en-ibo'
+  - 'en-lug'
+  - 'en-luo'
+  - 'en-pcm'
+  - 'en-swa'
+  - 'en-tsn'
+  - 'en-twi'
+  - 'en-yor'
+  - 'en-zul'
+  - 'fr-bam'
+  - 'fr-bbj'
+  - 'fr-ewe'
+  - 'fr-fon'
+  - 'fr-mos'
+  - 'fr-wol'
+
+# language identification model
+lang_identification_model: 'cis-lmu/glotlid'
+
+# filepaths
+wikinews_dir: ${paths.data_dir}wikinews
+wmtnews_dir: ${paths.data_dir}wmtnews
+globalvoices_dir: ${paths.data_dir}globalvoices
+polynews_dir: ${paths.data_dir}polynews
+polynews_parallel_dir: ${paths.data_dir}polynews-parallel
+
+# data processing 
+wikinews_remove_text_len_pct: 0.15
+masakhanews_remove_text_len_pct: 0.03
+mafand_remove_text_len_pct: 0.03
+wmtnews_remove_text_len_pct: 0.03
+globalvoices_remove_text_len_pct: 0.03

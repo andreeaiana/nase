@@ -1,0 +1,25 @@
+_target_: nase.models.nase.NASE
+_recursive_: False
+
+# training
+language_model: 
+  _target_: transformers.AutoModel.from_pretrained
+  _recursive_: False
+  pretrained_model_name_or_path: ${data.tokenizer.pretrained_model_name_or_path} 
+tokenizer: 
+  _target_: transformers.AutoTokenizer.from_pretrained
+  _recursive_: False
+  pretrained_model_name_or_path: ${data.tokenizer.pretrained_model_name_or_path} 
+  use_fast: True
+
+tgt_languages: ${data.tgt_languages}
+val_batch_size: ${data.val_batch_size}
+
+optimizer: 
+  _target_: torch.optim.AdamW
+  lr: 0.00003
+  weight_decay: 0.0
+
+scheduler:
+ _target_: transformers.optimization.get_constant_schedule
+ _recursive_: False

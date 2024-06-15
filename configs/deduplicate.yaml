@@ -1,0 +1,32 @@
+# @package _global_
+
+# specify here default configuration
+# order of defaults determines the order in which configs override each other
+defaults:
+  - _self_
+  - paths: default
+  - logger: wandb
+  - hydra: polynews
+
+task_name: "deduplication"
+
+lang: eng_Latn
+
+polynews_dir: ${paths.data_dir}polynews
+polynews_raw_dir: ${polynews_dir}/raw
+output_w_clusters: "${polynews_dir}/clusters/${lang}"
+output: "${polynews_dir}/${lang}"
+
+dataset:
+  _target_: pandas.read_csv
+  _convert_: all
+  filepath_or_buffer: ${polynews_raw_dir}/${lang}/train.tsv
+  sep: '\t'
+  engine: python
+  escapechar: '\\'
+
+column: text
+ngram_size: 5
+num_perm: 256
+threshold: 0.9
+min_ngram_size: 5
