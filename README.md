@@ -16,7 +16,7 @@ Here is how to use this model to get the sentence embeddings of a given text in 
 
     # pepare input
     sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
-    encoded_input = tokenizer.encode(sentences, return_tensors='pt')
+    encoded_input = tokenizer(sentences, return_tensors='pt', padding=True)
 
     # forward pass
     with torch.no_grad():
@@ -36,7 +36,7 @@ and in Tensorflow:
 
     # pepare input
     sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
-    encoded_input = tokenizer.encode(sentences, return_tensors='tf')
+    encoded_input = tokenizer(sentences, return_tensors='tf', padding=True)
 
     # forward pass
     with torch.no_grad():
@@ -44,6 +44,19 @@ and in Tensorflow:
 
     # to get the sentence embeddings, use the pooler output
     sentence_embeddings = output.pooler_output
+```
+
+For similarity between sentences, an L2-norm is recommended before calculating the similarity:
+
+```python
+  import torch
+  import torch.nn.functional as F
+
+  def cos_sim(a: torch.Tensor, b: torch.Tensor):
+    a_norm = F.normalize(a, p=2, dim=1)
+    b_norm = F.normalize(b, p=2, dim=1)
+
+    return torch.mm(a_norm, b_norm.transpose(0, 1))
 ```
 
 # Pretraining NaSE
