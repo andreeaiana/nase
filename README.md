@@ -1,24 +1,49 @@
 # NaSE: News-adapted Sentence Embeddings
 
-NaSE is a news-adapted sentence encoder, domain-adapted from a pretrained massively multilingual sentence encoder (e.g, [LaBSE](https://aclanthology.org/2022.acl-long.62)) leveraging the [PolyNews](https://huggingface.co/datasets/aiana94/polynews) and [PolyNewsParallel](https://huggingface.co/datasets/aiana94/polynews-parallel) datasets.
+NaSE is a news-adapted sentence encoder, domain-specialized from a pretrained massively multilingual sentence encoder (e.g, [LaBSE](https://aclanthology.org/2022.acl-long.62)) leveraging the [PolyNews](https://huggingface.co/datasets/aiana94/polynews) and [PolyNewsParallel](https://huggingface.co/datasets/aiana94/polynews-parallel) datasets.
 
 # Using the pre-trained model
 NaSE can be loaded directly from [HuggingFace Hub Models](https://huggingface.co/models).
 
-```python
-    from transformers import AutoModel, AutoTokenizer
 
-    tokenizer = AutoTokenizer.from_pretrained('aiana94/NaSE')
-    model = AutoModel.from_pretrained('aiana94/NaSE')
+Here is how to use this model to get the sentence embeddings of a given text in PyTorch:
+
+```python
+    from transformers import BertModel, BertTokenizerFast
+
+    tokenizer = BERTTokenizerFast.from_pretrained('aiana94/NaSE')
+    model = BERTModel.from_pretrained('aiana94/NaSE')
 
     # pepare input
     sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
     encoded_input = tokenizer.encode(sentences, return_tensors='pt')
 
     # forward pass
-    output = model(**encoded_input).pooler_output
+    with torch.no_grad():
+        output = model(**encoded_input)
 
-    print(output)
+    # to get the sentence embeddings, use the pooler output
+    sentence_embeddings = output.pooler_output
+```
+
+and in Tensorflow:
+
+```python
+    from transformers import TFBertModel, BertTokenizerFast
+
+    tokenizer = BERTTokenizerFast.from_pretrained('aiana94/NaSE')
+    model = TFBERTModel.from_pretrained('aiana94/NaSE')
+
+    # pepare input
+    sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
+    encoded_input = tokenizer.encode(sentences, return_tensors='tf')
+
+    # forward pass
+    with torch.no_grad():
+        output = model(**encoded_input)
+
+    # to get the sentence embeddings, use the pooler output
+    sentence_embeddings = output.pooler_output
 ```
 
 # Pretraining NaSE
