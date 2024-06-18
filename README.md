@@ -11,8 +11,8 @@ Here is how to use this model to get the sentence embeddings of a given text in 
 ```python
     from transformers import BertModel, BertTokenizerFast
 
-    tokenizer = BERTTokenizerFast.from_pretrained('aiana94/NaSE')
-    model = BERTModel.from_pretrained('aiana94/NaSE')
+    tokenizer = BertTokenizerFast.from_pretrained('aiana94/NaSE')
+    model = BertModel.from_pretrained('aiana94/NaSE')
 
     # pepare input
     sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
@@ -31,8 +31,8 @@ and in Tensorflow:
 ```python
     from transformers import TFBertModel, BertTokenizerFast
 
-    tokenizer = BERTTokenizerFast.from_pretrained('aiana94/NaSE')
-    model = TFBERTModel.from_pretrained('aiana94/NaSE')
+    tokenizer = BertTokenizerFast.from_pretrained('aiana94/NaSE')
+    model = TFBertModel.from_pretrained('aiana94/NaSE')
 
     # pepare input
     sentences = ["This is an example sentence", "Dies ist auch ein Beispielsatz in einer anderen Sprache."]
