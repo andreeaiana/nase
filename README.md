@@ -225,3 +225,18 @@ Alternatively, you can follow the next steps:
 ```
     bash deduplicate_parallel.sh
 ```
+
+## Citation
+
+If you use NaSE, PolyNews or PolyNewsParallel, please cite:
+
+```bibtex
+@misc{iana2024news,
+      title={News Without Borders: Domain Adaptation of Multilingual Sentence Embeddings for Cross-lingual News Recommendation}, 
+      author={Andreea Iana and Fabian David Schmidt and Goran Glavaš and Heiko Paulheim},
+      year={2024},
+      eprint={2406.12634},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/2406.12634}
+}
+```
